@@ -181,6 +181,11 @@
       </div> <!--closes col-->
     </div> <!--closes row-->
 
+  <div class="row text-center">
+    <h1 class="matchName"></h1>
+    <img class="matchImg img-responsive" height="150" width="150" src="">
+  </div>
+
   </div> <!--closes container-->
 
 
@@ -194,7 +199,7 @@
 </html>
 
 <script type="text/javascript">
-
+$(document).ready(function(){
 	$(".submit").on("click", function(event){
 		event.preventDefault();
 
@@ -215,11 +220,13 @@
       ]
 		};
 
-		console.log(newFriend);
+		$.post("/api/friends", newFriend)
 
-		$.post("/api/friends", newFriend, function(data){
+    .done(function(data){
 			if(data){
 				alert("You're submitted!");
+        alert(data.matchName);
+        alert(data.matchImg);
 			}
 
 			$("#friendName").val("");
@@ -235,10 +242,12 @@
       $("#question9").val("");
       $("#question10").val("");
 
-      
-
+      $(".matchName").html(data.matchName);
+      $(".matchImg").attr("src", data.matchImg);
 		});
 
 	});
+
+ });
 	
 </script>

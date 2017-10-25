@@ -22,24 +22,40 @@ module.exports = function(app) {
     res.json(friendsData);
   });
 
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the tableData array)
-  // ---------------------------------------------------------------------------
 
   app.post("/api/friends", function(req, res) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body-parser middleware
-    // if (Data.length < 5) {
+
+    var scores = req.body.scores;
+
+    var totalScore = 0;
+    var friendScore = 0;
+    var totalDiff = 1000;
+    matchName = "";
+    matchImg = "";
+
+for(var i=0; i<friendsData.length; i++){
+
+  var diff = 0;
+
+  for(var j=0; j<scores.length; j++){
+
+      diff += Math.abs(parseInt(friendsData[i].scores[j] - scores[j]));
+    }
+
+    if(diff < totalDiff){
+      totalDiff = diff;
+
+      if(friendsData[i].name && friendsData[i].photo){
+        matchName = friendsData[i].name;
+        matchImg = friendsData[i].photo;
+      }
+    }
+}
+
+console.log(matchImg);
+console.log(matchName);
+
     friendsData.push(req.body);
-      res.json(true);
-    // else {
-    //   waitListData.push(req.body);
-    //   res.json(false);
-    // }
+      res.json({status: 'OK', matchName: matchName, matchImg: matchImg});
   });
 };

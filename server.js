@@ -11,7 +11,7 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 //parses the JSON for readability for devs
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
 //below points the server to different "route" files
