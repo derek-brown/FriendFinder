@@ -1,9 +1,9 @@
 var friendsArray = [
-// {
-// "name": "Derek",
-// "photo": "https://drive.google.com/open?id=1Xmxtg8I6lQ8__MeAZHx8mI5lNJk6IF5DfA",
-// "scores": ["5","4","2","1","5","1","2","2","3","5"]
-// },
+{
+"name": "Derek",
+"photo": "https://drive.google.com/open?id=1Xmxtg8I6lQ8__MeAZHx8mI5lNJk6IF5DfA",
+"scores": ["5","4","2","1","5","1","2","2","3","5"]
+},
 {
   "name":"Mark",
  "photo":"https://image.ibb.co/epUwMR/35c9aa9.jpg",
